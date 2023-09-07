@@ -40,6 +40,8 @@ P.S. You can delete this when you're done too. It's your config now :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+require 'custom/keymaps'
+
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -190,14 +192,6 @@ require('lazy').setup({
     },
   },
 
-  {
-    -- Theme inspired by Atom
-    "catppuccin/nvim",
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'catppuccin'
-    end,
-  },
 
   {
     -- Set lualine as statusline
@@ -257,6 +251,7 @@ require('lazy').setup({
   --       Uncomment any of the lines below to enable them.
   require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.theme',
 
   -- NOTE: The import below automatically adds your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
@@ -311,47 +306,6 @@ vim.o.scrolloff = 8
 -- Set Relative numbers
 vim.o.relativenumber = true
 
--- [[ Basic Keymaps ]]
-
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
--- Quite Insert and Visual Mode by Pressing jk
-vim.keymap.set({ 'i', 'v' }, 'jk', '<Esc>')
--- Nvim File Explorer
-vim.keymap.set({ 'n', 'v' }, '<leader>pv', vim.cmd.Ex)
-
--- Save And Format
-vim.keymap.set({ 'n', 'i', 'v' }, '<C-s>', function()
-  vim.cmd.w()
-  vim.cmd.Format()
-end)
-
--- select All
-vim.keymap.set('n', '<C-a>', 'gg<S-v>G')
-
--- Keymaps For Tabs and Windows
--- Create New Tab
-vim.keymap.set('n', 'te', ':tab sb<Return>', { silent = true })
-
--- Quite Tab
-vim.keymap.set('n', 'tq', ':tabclose<Return>', { silent = true })
-
--- Switch Between Tabs
-vim.keymap.set('n', 'tn', ':tabNext<Return>', { silent = true })
-vim.keymap.set('n', 'tp', ':tabprevious<Return>', { silent = true })
-
--- Split Window
-vim.keymap.set('n', 'sh', ':split<Return><C-w>w', { silent = true })
-vim.keymap.set('n', 'sv', ':vsplit<Return><C-w>w', { silent = true })
-
--- Quite Window
-vim.keymap.set('n', 'wq', '<C-w>q', { silent = true })
-
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
