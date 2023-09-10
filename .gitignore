@@ -1,0 +1,8 @@
+# ignore every folder
+*
+
+# Expect 
+!tmux
+!nvim
+!README.md 
+!.gitignore
