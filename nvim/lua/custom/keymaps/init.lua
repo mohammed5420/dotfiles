@@ -4,8 +4,13 @@
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+-- Nvim Copilopt
+vim.g.copilot_assume_mapped = true
+vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
 -- Quite Insert and Visual Mode by Pressing jk
 vim.keymap.set({ 'i', 'v' }, 'jk', '<Esc>')
+
 -- Nvim File Explorer
 vim.keymap.set({ 'n', 'v' }, '<leader>pv', vim.cmd.Ex)
 
