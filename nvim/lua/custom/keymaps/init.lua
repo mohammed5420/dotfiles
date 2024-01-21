@@ -38,6 +38,9 @@ vim.keymap.set('n', 'tp', ':tabprevious<Return>', { silent = true })
 vim.keymap.set('n', 'sh', ':split<Return><C-w>w', { silent = true })
 vim.keymap.set('n', 'sv', ':vsplit<Return><C-w>w', { silent = true })
 
+-- Scroll inside other windows
+vim.keymap.set('n', '<M-u>', '<C-w>w<C-u><C-w>w')
+vim.keymap.set('n', '<M-d>', '<C-w>w<C-d><C-w>w')
 -- Quite Window
 vim.keymap.set('n', 'wq', '<C-w>q', { silent = true })
 
