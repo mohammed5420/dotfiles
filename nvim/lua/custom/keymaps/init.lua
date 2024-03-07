@@ -20,6 +20,24 @@ vim.keymap.set({ 'n', 'i', 'v' }, '<C-s>', function()
 	vim.cmd.Format()
 end)
 
+vim.keymap.set({ 'n' }, '<leader>k', function()
+	local ln = vim.fn['line']('.') - 1;
+	local c = vim.v.count1;
+	for i = 1, c do
+		vim.fn['append'](ln, '');
+	end
+	vim.cmd(":-" .. c)
+end)
+
+vim.keymap.set({ 'n' }, '<leader>j', function()
+	local ln = vim.fn['line']('.')
+	local c = vim.v.count1;
+	for i = 1, c do
+		vim.fn['append'](ln, '');
+	end
+	vim.cmd(":+" .. c)
+end)
+
 vim.keymap.set('n', '<Up>', "<Nop>")
 
 -- select All
