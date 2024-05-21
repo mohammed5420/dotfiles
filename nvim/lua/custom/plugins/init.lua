@@ -3,6 +3,5 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-	'm4xshen/autoclose.nvim',
-	'nvim-treesitter/nvim-treesitter-context'
+	"m4xshen/autoclose.nvim",
 }
