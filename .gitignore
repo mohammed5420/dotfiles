@@ -4,5 +4,6 @@
 # Expect 
 !tmux
 !nvim
+!.zshrc
 !README.md 
 !.gitignore
