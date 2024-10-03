@@ -87,6 +87,9 @@ P.S. You can delete this when you're done too. It's your config now! :)
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+-- In init.lua
+require("custom.keymaps.snippets") -- Load snippet keymaps
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -113,7 +116,7 @@ vim.opt.showmode = false
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = "unnamedplus"
+-- vim.o.clipboard = "unnamedplus"
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -193,6 +196,19 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+
+-- Set clipboard to use system clipboard
+vim.opt.clipboard = "unnamedplus"
+
+-- Optional: Set up key mappings for copy and paste
+vim.keymap.set("n", "<leader>y", '"+y')
+vim.keymap.set("v", "<leader>y", '"+y')
+vim.keymap.set("n", "<leader>p", '"+p')
+vim.keymap.set("v", "<leader>p", '"+p')
+
+-- Optional: Set up commands for explicit clipboard operations
+vim.api.nvim_create_user_command("Cy", 'normal "+y', {})
+vim.api.nvim_create_user_command("Cp", 'normal "+p', {})
 
 require("custom.keymaps")
 
@@ -380,12 +396,17 @@ require("lazy").setup({
 				-- You can put your default mappings / updates / etc. in here
 				--  All the info you're looking for is in `:help telescope.setup()`
 				--
-				-- defaults = {
-				--   mappings = {
-				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-				--   },
-				-- },
-				-- pickers = {}
+				defaults = {
+					file_ignore_patterns = { "node_modules", ".git", "build", "dist" },
+					-- mappings = {
+					--   i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+					-- },
+				},
+				pickers = {
+					find_files = {
+						hidden = true,
+					},
+				},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
